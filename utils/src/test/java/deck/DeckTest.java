@@ -27,7 +27,7 @@ public class DeckTest {
     }
 
     @Test
-    void deckShuffle() {
+    void deckShuffling() {
         Deck deckToTest = new Deck();
         Deck deckToCompare = new Deck();
         deckToTest.shuffle();
