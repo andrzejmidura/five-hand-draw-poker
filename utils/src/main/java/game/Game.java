@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Queue;
 
 public abstract class Game {
+    protected static final int ENTRY_PRICE = 200;
     private int startingPlayer = 0;
     private final Queue<Player> playerQueue = new LinkedList<>();
     private final Queue<Player> auxiliaryQueue = new LinkedList<>();
@@ -29,6 +30,7 @@ public abstract class Game {
     public void addPlayer(Player p) {
         if (!this.running && !this.players.contains(p)) {
             this.players.add(p);
+            p.setPocket(ENTRY_PRICE);
             if (this.players.size() == this.maxPlayers)
                 this.running = true;
         }
