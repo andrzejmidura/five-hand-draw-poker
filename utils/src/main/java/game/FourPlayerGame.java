@@ -1,5 +1,8 @@
 package game;
 
 public class FourPlayerGame extends Game {
-    private final int maxPlayers = 4;
+
+    public FourPlayerGame() {
+        this.maxPlayers = 4;
+    }
 }
