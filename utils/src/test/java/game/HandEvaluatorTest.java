@@ -223,4 +223,34 @@ public class HandEvaluatorTest {
         cards.add(new Card(Card.Suit.SPADE,     Card.Rank.ACE));
         assertEquals("FOUR_OF_A_KIND", he.evaluate(cards));
     }
+
+    @Test
+    void StraightFlushEvaluationTest() {
+        cards.clear();
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.TWO));
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.FOUR));
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.FIVE));
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.THREE));
+        assertEquals("STRAIGHT_FLUSH", he.evaluate(cards));
+
+        cards.clear();
+        cards.add(new Card(Card.Suit.SPADE, Card.Rank.FIVE));
+        cards.add(new Card(Card.Suit.SPADE, Card.Rank.FOUR));
+        cards.add(new Card(Card.Suit.SPADE, Card.Rank.EIGHT));
+        cards.add(new Card(Card.Suit.SPADE, Card.Rank.SIX));
+        cards.add(new Card(Card.Suit.SPADE, Card.Rank.SEVEN));
+        assertEquals("STRAIGHT_FLUSH", he.evaluate(cards));
+    }
+
+    @Test
+    void RoyalFlushEvaluationTest() {
+        cards.clear();
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.KING));
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.ACE));
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.QUEEN));
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.JACK));
+        cards.add(new Card(Card.Suit.DIAMOND, Card.Rank.TEN));
+        assertEquals("ROYAL_FLUSH", he.evaluate(cards));
+    }
 }
