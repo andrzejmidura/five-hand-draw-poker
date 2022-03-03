@@ -10,10 +10,14 @@ public class Card {
         Suit(int v) {
             this.value = v;
         }
+
+        public int getValue() {
+            return value;
+        }
+
         private int value;
     }
     public enum Rank {
-        ACE(14),
         KING(13),
         QUEEN(12),
         JACK(11),
@@ -25,11 +29,17 @@ public class Card {
         FIVE(5),
         FOUR(4),
         THREE(3),
-        TWO(2);
+        TWO(2),
+        ACE(1);
 
         Rank(int v) {
             this.value = v;
         }
+
+        public int getValue() {
+            return value;
+        }
+
         private int value;
     }
 
@@ -49,6 +59,14 @@ public class Card {
         if (this.suit != ((Card) obj).suit || this.rank != ((Card) obj).rank)
             return false;
         return true;
+    }
+
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public Rank getRank() {
+        return rank;
     }
 
     protected Suit suit;
