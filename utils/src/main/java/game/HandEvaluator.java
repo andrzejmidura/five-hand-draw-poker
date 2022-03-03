@@ -18,7 +18,7 @@ public class HandEvaluator {
     }
 
     public String evaluate(ArrayList<Card> cards) {
-        String s = "";
+        String s;
 
         for (Card c : cards) {
             this.ranks[c.getRank().getValue()] += 1;
@@ -36,7 +36,7 @@ public class HandEvaluator {
                 sameCards2Suit = i;
             }
         }
-        this.checkForStraight(cards);
+        this.checkForStraight();
         this.checkForViolatingFlush(cards);
 
         if (this.sameCards==2) {
@@ -71,14 +71,13 @@ public class HandEvaluator {
         return s;
     }
 
-    protected void checkForStraight(ArrayList<Card> cards) {
-        int start = 0, end = 0, range = 0;
+    protected void checkForStraight() {
+        int start = 0, range = 0;
         for (int i=1; i<14; i++) {
             if (this.ranks[i]==1) {
-                end = i;
                 if (start==0)
                     start = i;
-            } else {
+            } else if (start!=0) {
                 if (range<i-start) {
                     range = i-start;
                 }
@@ -87,7 +86,9 @@ public class HandEvaluator {
         }
         if (range==5)
             this.isStraight = true;
-        else if (this.ranks[0]==1 && range==4 && end==13)
+        else if (start==9) // it provides check for the Nine to King situation, because then range won't be calculated and start will be 9
+            this.isStraight = true;
+        else if (this.ranks[1]==1 && start==10) // same as above but for Ten to Ace situation
             this.isStraight = true;
     }
 
